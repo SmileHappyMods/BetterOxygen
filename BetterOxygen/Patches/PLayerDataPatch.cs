@@ -23,7 +23,6 @@ namespace BetterOxygen.Patches
         static public float refillRate = Config.oxygenRefillRate.Value;
         static public bool sceneSwitch = false;
         static public int higher = 0;
-        static public float preventSpeed = 0;
 
         [HarmonyPatch("UpdateValues")]
         [HarmonyPrefix]
@@ -54,12 +53,7 @@ namespace BetterOxygen.Patches
                     }
                 if (diveRefill == true && higher == 1)
                 {
-                    preventSpeed = 0;
-                    while (___remainingOxygen < ___maxOxygen && preventSpeed < 1)
-                    {
-                        ___remainingOxygen += Time.deltaTime * refillRate;
-                        preventSpeed += Time.deltaTime;
-                    }
+                    ___remainingOxygen += refillRate;
                 }
             }
             else if (infiniteO2 == true)
