@@ -53,7 +53,7 @@ namespace BetterOxygen.Patches
                     }
                 if (diveRefill == true && higher == 1)
                 {
-                    ___remainingOxygen += refillRate;
+                    ___remainingOxygen += refillRate * Time.deltaTime;
                 }
             }
             else if (infiniteO2 == true)
